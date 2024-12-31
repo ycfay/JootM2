@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>JootM2</title>
+    <!--<script src="https://pixijs.download/release/pixi.js"></script>!-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.4.2/pixi.js"></script>
+    <script src="./JootM2.js"></script>
+</head>
+
+<body>
+    <p><label for="mapNo">MapNo: </label><input type="text" name="mapNo" inputmode="text" value="0" /> <button id="btnMapLoad">LoadMap</button><label>(At the center point after loading, click the button below to change)</label></p>
+    <p><label for="roleX">Center: </label><input type="number" name="roleX" value="330" />,<input type="number" name="roleY" value="330" /> <button id="btnMove">SetCenter</button></p>
+    <p><label for="dbgStandFlag">Stand Flags: </label><label><input type="checkbox" name="dbgStandFlag"/>(GREEN means can't stand-up, Passage and skill casting will also be affected)</label></p>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () =>  {
+
+            const app = new PIXI.Application({ background: '#000', width: 768, height: 768 });
+            document.body.appendChild(app.view);
+
+            const btnMapLoad = document.querySelector("#btnMapLoad");
+            const btnMove = document.querySelector("#btnMove");
+            const dbgStandFlag = document.querySelector("input[name='dbgStandFlag']");
+
+            const mapActor = new JootM2.MapActor(app, app.stage)
+            btnMapLoad.onclick = (event) => {
+                mapActor.enter(document.querySelector("input[name='mapNo']").value);
+                app.ticker.add((delta) => {
+                    mapActor.update()
+                })
+            }
+
+            btnMove.onclick = (event) => {
+                mapActor.setCenter(parseInt(document.querySelector("input[name='roleX']").value), parseInt(document.querySelector("input[name='roleY']").value))
+            }
+
+            dbgStandFlag.onchange = event => {
+                mapActor.dbg.set(event.target.checked)
+            }
+            
+            JootM2.init("http://10.0.241.155:55842/resources.json");
+    });
+</script>
+</body>
