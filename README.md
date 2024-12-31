@@ -6,6 +6,7 @@ Construct a Legend 2 client-side rendering framework suitable for web pages for 
 
 ## How To Build
 npm i
+</br>
 npm run build
 
 ## How To Run
