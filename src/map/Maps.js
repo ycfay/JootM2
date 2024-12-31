@@ -35,7 +35,7 @@ class Maps {
             offset += 2
             offset += 48
             const tileByteSize = (mapData.byteLength - offset) / map.getWidth() / map.getHeight()
-			console.warn(map);
+			//console.warn(map);
             const mapTileInfos = []
             for (let width = 0; width < map.getWidth(); ++width) {
                 mapTileInfos[width] = []

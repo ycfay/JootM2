@@ -56,6 +56,8 @@ class WIL {
         }
 
         const byteBuffer = new DataView(wilData);
+        let count=0;
+        //console.warn(`imageCount:${this.imageCount} / ${idx}`);
         for (;no < this.imageCount; ++no) {
             let offset = this.offsetList[no];
             if (offset == 0) {
@@ -170,6 +172,8 @@ class WIL {
             }
             if (this.textureConsumer != null) {
                 this.loadedNos.add(no);
+                count++;
+                console.warn(`${count}  textureConsumer:${idx} / ${sRGBA.length} / {tex size width:${width} height:${height} / tex offset x:${offsetX} y:${offsetY}}`);
                 this.textureConsumer(no, new M2Texture(false, width, height, offsetX, offsetY, sRGBA));
             }
         }
@@ -209,18 +213,21 @@ class WIL {
             {
                 try {
                     // 先尝试获取片段
-                    const headers = { Range: `bytes=${this.offsetList[idx]}-${this.offsetList[idx] + 512 * 1024}` }; // 加载至多512K数据                    
+                    const headers = { Range: `bytes=${this.offsetList[idx]}-${this.offsetList[idx] + 512 * 1024}` }; // 加载至多512K数据    
+                    //console.warn(`idx:${idx} / headers:${JSON.stringify(headers)} `);
                     const response = await fetch(this.wilUrl, { headers });
                     if (response.status === 206) {
                         wilData = await response.arrayBuffer();
                     }
+                    /*
                     if(idx==3152)
-                        {
-                            console.warn(`idx:${idx}`);
-                            console.warn(`wilUrl:${this.wilUrl}`);
-                            console.warn(`headers:${JSON.stringify(headers)}`);
-                            console.warn(`wilData:${wilData.byteLength}`);
-                        }
+                    {
+                        console.warn(`idx:${idx}`);
+                        console.warn(`wilUrl:${this.wilUrl}`);
+                        console.warn(`headers:${JSON.stringify(headers)}`);
+                        console.warn(`wilData:${wilData.byteLength}`);
+                    }
+                    */
                 } catch { }
             }
             if (wilData) {

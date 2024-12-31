@@ -36,6 +36,7 @@ class Images {
             if (indexFileUrl.toLowerCase().endsWith("wix")) {
                 const wil = new WIL(indexFileUrl, libraryFileUrl)
                 wil.onTextureLoad((no, tex) => {
+                    //console.warn(`wil onTextureLoad:${libName} {tex size width:${tex.width} height:${tex.height}}`);
                     const pixiTex = PIXI.BaseTexture.fromBuffer(tex.pixels, tex.width, tex.height);
                     if (pixiTex) {
                         PIXI.utils.BaseTextureCache[`${libName}/${no}`] = pixiTex

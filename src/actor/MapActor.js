@@ -341,7 +341,7 @@ class MapActor {
             rectPixel.width = (rightMaxCell - leftMinCell + 1) * 48;
             rectPixel.height = (bottomMaxCell - topMinCell + 1) * 32;
         }
-
+        let count = 0;
         // 查看是否所有纹理都加载完成
         let textureLoadCompleted = true
         // 绘制（构建节点列表）
@@ -362,7 +362,8 @@ class MapActor {
                         const sprite = new PIXI.Sprite(new PIXI.Texture(tex))
                         sprite.x = drawingX
                         sprite.y = drawingY
-                        //console.warn(`tileTextureName:${tileTextureName}  w:${w} h:${h} drawingX :${drawingY } drawingX:${drawingX}`);
+                        count++;
+                        //console.warn(`${count}:tileTextureName:${tileTextureName} {tex size width:${tex.width} height:${tex.height}} / {w:${w} h:${h}} / {drawingX :${drawingY } drawingX:${drawingX}}`);
                         this.bngContainer.addChild(sprite)
                     }
                 }
@@ -387,9 +388,8 @@ class MapActor {
                         const sprite = new PIXI.Sprite(new PIXI.Texture(tex))
                         sprite.x = drawingX
                         sprite.y = drawingY
-                        //console.warn(`smTileTextureName:${tileTextureName}  w:${w} h:${h} drawingX :${drawingY } drawingX:${drawingX}`);
-
-                        this.bngContainer.addChild(sprite)
+                        //console.warn(`smTileTextureName:${tileTextureName} w:${w} h:${h} drawingX :${drawingY } drawingX:${drawingX} }`);
+                        //this.bngContainer.addChild(sprite)
                     }
                 }
                 drawingY += 32;
@@ -408,12 +408,11 @@ class MapActor {
                         const tmpStrArr = objTextureName.split('/')
                         Images.load(tmpStrArr[0], tmpStrArr[1])
                     } else {
-                        console.warn(`objTextureName:${objTextureName}  w:${w} h:${h}`);
-
+                        //console.warn(`objTextureName:${objTextureName}  w:${w} h:${h}`);
                         // 添加对象图纹理到地图对象中
-                        this.map.addObjTextureRegion(rectGame.x + w, rectGame.y + h, new PIXI.Texture(tex))
+                        //this.map.addObjTextureRegion(rectGame.x + w, rectGame.y + h, new PIXI.Texture(tex))
                         // 清理纹理编号以免下次重新添加
-                        this.map.objsTextureName[rectGame.x + w][rectGame.y + h] = null
+                        //this.map.objsTextureName[rectGame.x + w][rectGame.y + h] = null
                     }
                 }
             }
