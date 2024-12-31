@@ -41,6 +41,9 @@ class Images {
                     if (pixiTex) {
                         PIXI.utils.BaseTextureCache[`${libName}/${no}`] = pixiTex
                     }
+                    if(no=='3853'){
+                        console.warn(`wil onTextureLoad:${libName} {tex size width:${tex.width} height:${tex.height}}`);
+                    }
                     if (textureConsumer != null) {
                         textureConsumer(libName, no, tex)
                     }

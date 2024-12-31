@@ -11,7 +11,7 @@ class M2Texture {
         this.offsetX = offsetX;
         // 纵向偏移
         this.offsetY = offsetY;
-        // 像素RGBA，Uint8Array
+        /// 像素RGBA，Uint8Array
         this.pixels = pixels;
     }
 

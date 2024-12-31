@@ -173,7 +173,7 @@ class WIL {
             if (this.textureConsumer != null) {
                 this.loadedNos.add(no);
                 count++;
-                console.warn(`${count}  textureConsumer:${idx} / ${sRGBA.length} / {tex size width:${width} height:${height} / tex offset x:${offsetX} y:${offsetY}}`);
+                //console.warn(`${count}  textureConsumer: no:${no} / idx:${idx} / sRGBA:${sRGBA.length} / {tex size width:${width} height:${height} / tex offset x:${offsetX} y:${offsetY}}`);
                 this.textureConsumer(no, new M2Texture(false, width, height, offsetX, offsetY, sRGBA));
             }
         }
