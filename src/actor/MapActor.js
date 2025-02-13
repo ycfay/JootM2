@@ -366,7 +366,7 @@ class MapActor {
                         const tmpStrArr = tileTextureName.split('/')
                         //console.warn('tmpStrArr:',tmpStrArr);
                         if(tmpStrArr[1]=='3201'){
-                            console.warn(`${count}:tileTextureName:${tileTextureName} {tex size width:${tex.width} height:${tex.height}} / {w:${w} h:${h}} / {drawingX :${drawingY } drawingX:${drawingX}}`);
+                            console.warn(`${count}:tileTextureName:${tileTextureName} {tex size width:${tex.width} height:${tex.height}} / {w:${w} h:${h}} / {drawingY :${drawingY } drawingX:${drawingX}}`);
                         }
                         this.bngContainer.addChild(sprite)
                     }
